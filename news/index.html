@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>News · Swiss Junior Open</title>
+<meta name="description" content="Neuigkeiten zum Swiss Junior Open.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <div class="nav-left">
+      <a class="brand" href="../index.html"><img src="../assets/img/sjo-logo-mark.png" alt="">SWISS <span>JUNIOR OPEN</span></a>
+      <a class="livescore-btn" href="https://kitris.tv" target="_blank" rel="noopener">Livescores</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../partner/index.html">Partner</a></li>
+      <li><a href="../news/index.html" class="active">News</a></li>
+      <li><a href="mailto:info@itfbasel.com">Kontakt</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Menü öffnen"><span></span></button>
+  </div>
+</nav>
+
+<section class="section-sand">
+  <div class="wrap">
+    <div class="section-head">
+      <h1 style="font-size:clamp(2rem,4vw,2.8rem); margin-bottom:14px; color:var(--slate);">News</h1>
+      <p style="font-size:1.05rem;">Neuigkeiten rund um das Swiss Junior Open.</p>
+    </div>
+    <div id="news-grid" class="news-grid" style="margin-top:48px;"></div>
+    <div id="news-empty" class="news-empty" style="display:none;">
+      Noch keine Meldungen. Die ersten News folgen in Kürze.
+    </div>
+  </div>
+</section>
+
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal">
+    <button class="modal-close" id="modal-close" aria-label="Schliessen">&times;</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">SWISS JUNIOR OPEN</div>
+        <p style="margin-top:10px; color:rgba(255,255,255,0.7); font-size:0.9rem;">ITF World Tennis Tour Juniors J200<br>TC Old Boys Basel</p>
+      </div>
+      <div>
+        <h4>Turnier</h4>
+        <a href="../index.html">Startseite</a>
+        <a href="../partner/index.html">Partner</a>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <a href="mailto:info@itfbasel.com">info@itfbasel.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>TC Old Boys Basel · St. Galler-Ring 225, 4054 Basel</span>
+      <span>info@itfbasel.com</span>
+    </div>
+  </div>
+</footer>
+
+<script src="posts-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+  const TAG_LABEL = {
+    "swiss-junior-open": "Swiss Junior Open",
+    "allgemein": "Allgemein",
+  };
+
+  function formatDate(iso) {
+    const [y, m, d] = iso.split("-");
+    return `${d}.${m}.${y}`;
+  }
+
+  const grid = document.getElementById("news-grid");
+  const emptyState = document.getElementById("news-empty");
+
+  const sorted = [...posts].sort((a, b) => (a.date < b.date ? 1 : -1));
+
+  if (sorted.length === 0) {
+    emptyState.style.display = "block";
+  } else {
+    sorted.forEach((post, index) => {
+      const card = document.createElement("button");
+      card.className = "news-card reveal";
+      card.type = "button";
+      card.innerHTML = `
+        ${post.image ? `<div class="thumb" style="background-image:url('${post.image}')"></div>` : ""}
+        <div class="body">
+          <span class="tag ${post.tournament}">${TAG_LABEL[post.tournament] || post.tournament}</span>
+          <h3>${post.title}</h3>
+          <p class="excerpt">${post.excerpt}</p>
+          <span class="date">${formatDate(post.date)}</span>
+        </div>
+      `;
+      card.addEventListener("click", () => openModal(index));
+      grid.appendChild(card);
+    });
+  }
+
+  const backdrop = document.getElementById("modal-backdrop");
+  const modalContent = document.getElementById("modal-content");
+  const modalClose = document.getElementById("modal-close");
+
+  function openModal(index) {
+    const post = sorted[index];
+    modalContent.innerHTML = `
+      ${post.image ? `<img src="${post.image}" alt="">` : ""}
+      <span class="tag ${post.tournament}">${TAG_LABEL[post.tournament] || post.tournament}</span>
+      <h2 style="margin:10px 0 4px;">${post.title}</h2>
+      <span class="date" style="margin-top:0;">${formatDate(post.date)}</span>
+      <div class="body" style="margin-top:20px;">
+        ${post.body.map((p) => `<p>${p}</p>`).join("")}
+      </div>
+    `;
+    backdrop.classList.add("open");
+  }
+
+  function closeModal() {
+    backdrop.classList.remove("open");
+  }
+
+  modalClose.addEventListener("click", closeModal);
+  backdrop.addEventListener("click", (e) => {
+    if (e.target === backdrop) closeModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+
+  // Reveal-Animation nachträglich eingefügter Karten aktivieren
+  requestAnimationFrame(() => {
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll(".news-card.reveal").forEach((el) => io.observe(el));
+  });
+</script>
+</body>
+</html>
