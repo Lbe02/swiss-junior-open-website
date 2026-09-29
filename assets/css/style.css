@@ -497,8 +497,16 @@ section.section-sand p {
   margin-top: 16px;
 }
 
+section.dark-band .split-text h2 {
+  color: var(--gold);
+}
+
 section.dark-band .split-text p {
   color: var(--text-on-green-muted);
+}
+
+section.section-sand .split-text h2 {
+  color: var(--slate);
 }
 
 section.section-sand .split-text p {
