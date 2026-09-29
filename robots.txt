@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://swissjunioropen.tennis/sitemap.xml

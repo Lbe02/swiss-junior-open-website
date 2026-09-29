@@ -324,8 +324,14 @@ p {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center 30%;
+  overflow: hidden;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
 }
 
 .hero-bg::after {
