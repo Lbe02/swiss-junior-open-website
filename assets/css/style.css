@@ -968,6 +968,12 @@ section.section-sand .split-text p {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  text-decoration: none;
+  transition: opacity 0.2s var(--ease-standard);
+}
+
+a.logo-tile:hover {
+  opacity: 0.75;
 }
 
 .logo-tile img {
