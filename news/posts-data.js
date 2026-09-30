@@ -1,23 +1,32 @@
-// News-Beiträge für die Raster-Seite unter /news/.
+// News-Beiträge des Swiss Junior Open.
 //
-// So fügst du eine neue Meldung hinzu (kein Programmieren nötig):
-// 1. Kopiere einen kompletten { ... } Block unten (inklusive Kommas).
-// 2. Füge ihn ganz oben in das posts-Array ein (neueste zuerst).
-// 3. Passe die Felder an:
-//    - title: Überschrift der Meldung
-//    - date: Datum im Format "YYYY-MM-DD" (erscheint auf der Karte)
-//    - tournament: "swiss-junior-open" oder "allgemein" (steuert die farbige Markierung)
-//    - image: Pfad zu einem Bild unter ../assets/img/ (oder leer lassen: "")
-//    - excerpt: Kurztext auf der Karte (1-2 Sätze)
-//    - body: Array von Absätzen für die Detailansicht (jeder Eintrag = ein Absatz)
-// 4. Datei speichern. Fertig, kein Server-Neustart nötig.
+// Diese Datei ist die Quelle für alle News. Aus ihr erzeugt das Skript
+// tools/build_news.py für jeden Beitrag eine eigene Seite unter /news/<slug>/,
+// das Raster auf /news/ und die Einträge in sitemap.xml (damit Google
+// Text und Bilder findet).
+//
+// Neuen Beitrag hinzufügen:
+// 1. Einen kompletten { ... } Block kopieren und ganz oben ins posts-Array einfügen.
+// 2. Felder anpassen:
+//    - slug: Adresse der Seite, nur Kleinbuchstaben, Zahlen und Bindestriche (z.B. "rueckblick-2027")
+//    - title: Überschrift
+//    - date: Datum im Format "YYYY-MM-DD"
+//    - tournament: "swiss-junior-open" oder "allgemein"
+//    - image: Pfad unter ../assets/img/ (oder "")
+//    - imageAlt: Bildbeschreibung für Google und Screenreader (was ist zu sehen?)
+//    - excerpt: Kurztext für Karte und Google-Beschreibung (1-2 Sätze)
+//    - body: Absätze des Beitrags
+// 3. Im Repo-Ordner ausführen: python3 tools/build_news.py
+// 4. Committen und pushen.
 
 const posts = [
   {
+    slug: "neue-website",
     title: "Das Swiss Junior Open hat eine neue Website",
     date: "2026-09-30",
     tournament: "swiss-junior-open",
     image: "../assets/img/news-website-launch.jpg",
+    imageAlt: "Startseite der neuen Website swissjunioropen.tennis mit dem Claim «Die Bühne für die Tennisstars von morgen.»",
     excerpt:
       "Das höchstbewertete internationale Juniorenturnier der Schweiz zeigt sich online jetzt so, wie es sich auf der Anlage anfühlt: international, professionell und nah am Tennis von morgen.",
     body: [
@@ -32,10 +41,12 @@ const posts = [
     ],
   },
   {
+    slug: "rueckblick-2026",
     title: "Ein Monat danach: Rückblick auf das Swiss Junior Open 2026",
     date: "2026-08-29",
     tournament: "swiss-junior-open",
     image: "../assets/img/sjo-siegerehrung.jpg",
+    imageAlt: "Siegerehrung auf dem Centre Court mit Swiss Junior Open 2026 Bande",
     excerpt:
       "Über 100 Spielerinnen und Spieler aus über 25 Nationen, packende Matches und eine Atmosphäre, die zeigt, warum dieses Turnier für den Schweizer Nachwuchs so wichtig ist.",
     body: [

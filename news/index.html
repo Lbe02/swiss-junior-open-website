@@ -44,19 +44,30 @@
       <h1 style="font-size:clamp(2rem,4vw,2.8rem); margin-bottom:14px; color:var(--slate);">News</h1>
       <p style="font-size:1.05rem;">Neuigkeiten rund um das Swiss Junior Open.</p>
     </div>
-    <div id="news-grid" class="news-grid" style="margin-top:48px;"></div>
-    <div id="news-empty" class="news-empty" style="display:none;">
-      Noch keine Meldungen. Die ersten News folgen in Kürze.
+    <div class="news-grid" style="margin-top:48px;">
+<!-- NEWS-GRID:START -->
+      <a class="news-card reveal" href="neue-website/index.html">
+        <img class="thumb" src="../assets/img/news-website-launch.jpg" alt="Startseite der neuen Website swissjunioropen.tennis mit dem Claim «Die Bühne für die Tennisstars von morgen.»" loading="lazy">
+        <div class="body">
+          <span class="tag swiss-junior-open">Swiss Junior Open</span>
+          <h3>Das Swiss Junior Open hat eine neue Website</h3>
+          <p class="excerpt">Das höchstbewertete internationale Juniorenturnier der Schweiz zeigt sich online jetzt so, wie es sich auf der Anlage anfühlt: international, professionell und nah am Tennis von morgen.</p>
+          <span class="date">30.09.2026</span>
+        </div>
+      </a>
+      <a class="news-card reveal" href="rueckblick-2026/index.html">
+        <img class="thumb" src="../assets/img/sjo-siegerehrung.jpg" alt="Siegerehrung auf dem Centre Court mit Swiss Junior Open 2026 Bande" loading="lazy">
+        <div class="body">
+          <span class="tag swiss-junior-open">Swiss Junior Open</span>
+          <h3>Ein Monat danach: Rückblick auf das Swiss Junior Open 2026</h3>
+          <p class="excerpt">Über 100 Spielerinnen und Spieler aus über 25 Nationen, packende Matches und eine Atmosphäre, die zeigt, warum dieses Turnier für den Schweizer Nachwuchs so wichtig ist.</p>
+          <span class="date">29.08.2026</span>
+        </div>
+      </a>
+<!-- NEWS-GRID:END -->
     </div>
   </div>
 </section>
-
-<div class="modal-backdrop" id="modal-backdrop">
-  <div class="modal">
-    <button class="modal-close" id="modal-close" aria-label="Schliessen">&times;</button>
-    <div id="modal-content"></div>
-  </div>
-</div>
 
 <footer>
   <div class="wrap">
@@ -89,85 +100,6 @@
   </div>
 </footer>
 
-<script src="posts-data.js"></script>
 <script src="../assets/js/main.js"></script>
-<script>
-  const TAG_LABEL = {
-    "swiss-junior-open": "Swiss Junior Open",
-    "allgemein": "Allgemein",
-  };
-
-  function formatDate(iso) {
-    const [y, m, d] = iso.split("-");
-    return `${d}.${m}.${y}`;
-  }
-
-  const grid = document.getElementById("news-grid");
-  const emptyState = document.getElementById("news-empty");
-
-  const sorted = [...posts].sort((a, b) => (a.date < b.date ? 1 : -1));
-
-  if (sorted.length === 0) {
-    emptyState.style.display = "block";
-  } else {
-    sorted.forEach((post, index) => {
-      const card = document.createElement("button");
-      card.className = "news-card reveal";
-      card.type = "button";
-      card.innerHTML = `
-        ${post.image ? `<div class="thumb" style="background-image:url('${post.image}')"></div>` : ""}
-        <div class="body">
-          <span class="tag ${post.tournament}">${TAG_LABEL[post.tournament] || post.tournament}</span>
-          <h3>${post.title}</h3>
-          <p class="excerpt">${post.excerpt}</p>
-          <span class="date">${formatDate(post.date)}</span>
-        </div>
-      `;
-      card.addEventListener("click", () => openModal(index));
-      grid.appendChild(card);
-    });
-  }
-
-  const backdrop = document.getElementById("modal-backdrop");
-  const modalContent = document.getElementById("modal-content");
-  const modalClose = document.getElementById("modal-close");
-
-  function openModal(index) {
-    const post = sorted[index];
-    modalContent.innerHTML = `
-      ${post.image ? `<img src="${post.image}" alt="">` : ""}
-      <span class="tag ${post.tournament}">${TAG_LABEL[post.tournament] || post.tournament}</span>
-      <h2 style="margin:10px 0 4px;">${post.title}</h2>
-      <span class="date" style="margin-top:0;">${formatDate(post.date)}</span>
-      <div class="body" style="margin-top:20px;">
-        ${post.body.map((p) => `<p>${p}</p>`).join("")}
-      </div>
-    `;
-    backdrop.classList.add("open");
-  }
-
-  function closeModal() {
-    backdrop.classList.remove("open");
-  }
-
-  modalClose.addEventListener("click", closeModal);
-  backdrop.addEventListener("click", (e) => {
-    if (e.target === backdrop) closeModal();
-  });
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeModal();
-  });
-
-  // Reveal-Animation nachträglich eingefügter Karten aktivieren
-  requestAnimationFrame(() => {
-    const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => {
-        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
-      }),
-      { threshold: 0.1 }
-    );
-    document.querySelectorAll(".news-card.reveal").forEach((el) => io.observe(el));
-  });
-</script>
 </body>
 </html>

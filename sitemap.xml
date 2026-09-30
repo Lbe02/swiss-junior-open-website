@@ -167,4 +167,26 @@
       <image:title>Centre Court and clay-court facility of TC Old Boys Basel</image:title>
     </image:image>
   </url>
+<!-- NEWS:START -->
+  <url>
+    <loc>https://swissjunioropen.tennis/news/neue-website/</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <image:image>
+      <image:loc>https://swissjunioropen.tennis/assets/img/news-website-launch.jpg</image:loc>
+      <image:title>Startseite der neuen Website swissjunioropen.tennis mit dem Claim «Die Bühne für die Tennisstars von morgen.»</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://swissjunioropen.tennis/news/rueckblick-2026/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <image:image>
+      <image:loc>https://swissjunioropen.tennis/assets/img/sjo-siegerehrung.jpg</image:loc>
+      <image:title>Siegerehrung auf dem Centre Court mit Swiss Junior Open 2026 Bande</image:title>
+    </image:image>
+  </url>
+<!-- NEWS:END -->
 </urlset>

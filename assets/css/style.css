@@ -898,8 +898,69 @@ section.section-sand .split-text p {
   background-position: center;
 }
 
+a.news-card {
+  display: block;
+  text-decoration: none;
+}
+
+.news-card img.thumb {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
 .news-card .body {
   padding: 22px 20px 24px;
+}
+
+/* Einzelner News-Beitrag (news/<slug>/) */
+
+.article {
+  max-width: 760px;
+}
+
+.article-back {
+  display: inline-block;
+  color: var(--slate);
+  font-size: 0.9rem;
+  text-decoration: none;
+  margin-bottom: 28px;
+}
+
+.article-back:hover {
+  text-decoration: underline;
+}
+
+.article .tag {
+  color: var(--slate);
+}
+
+.article h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--slate);
+  margin-bottom: 10px;
+}
+
+.article-date {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--ink);
+  margin-bottom: 32px;
+}
+
+.article-image {
+  display: block;
+  width: 100%;
+  border-radius: 0;
+  margin-bottom: 32px;
+}
+
+.article-body p {
+  color: var(--ink);
+}
+
+.article-body p + p {
+  margin-top: 14px;
 }
 
 .tag {
