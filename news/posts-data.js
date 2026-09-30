@@ -14,6 +14,24 @@
 
 const posts = [
   {
+    title: "Das Swiss Junior Open hat eine neue Website",
+    date: "2026-09-30",
+    tournament: "swiss-junior-open",
+    image: "../assets/img/news-website-launch.jpg",
+    excerpt:
+      "Das höchstbewertete internationale Juniorenturnier der Schweiz zeigt sich online jetzt so, wie es sich auf der Anlage anfühlt: international, professionell und nah am Tennis von morgen.",
+    body: [
+      "Das Swiss Junior Open hat eine neue Website: swissjunioropen.tennis",
+      "Das höchstbewertete internationale Juniorenturnier der Schweiz (World Tennis Junior Tour J200) zeigt sich online jetzt so, wie es sich auf der Anlage anfühlt: international, professionell und nah am Tennis von morgen.",
+      "Die neue Website bündelt alles an einem Ort:",
+      "· für Zuschauer und Publikum: Hall of Fame, Resultate seit 2022 und Livescores während des Turniers",
+      "· für Medien: Fact Sheet, aktuelle News und Bilder vom Turnier",
+      "· für Partner und Sponsoren: wer uns heute unterstützt und wie man Teil des Turniers wird",
+      "· für Spielerinnen und Spieler: Turnierformat, Anreise und Hospitality, auf Deutsch und Englisch",
+      "Ein wichtiger Schritt, um das Turnier weiter zu professionalisieren. Die nächste Austragung findet im Sommer 2027 am TC Old Boys Basel statt.",
+    ],
+  },
+  {
     title: "Ein Monat danach: Rückblick auf das Swiss Junior Open 2026",
     date: "2026-08-29",
     tournament: "swiss-junior-open",
