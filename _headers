@@ -1,0 +1,6 @@
+# Cloudflare Pages: CSS und JS immer beim Server nachfragen, damit Änderungen
+# sofort sichtbar sind (Browser prüft per ETag, lädt nur bei Änderung neu).
+/assets/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/js/*
+  Cache-Control: public, max-age=0, must-revalidate
