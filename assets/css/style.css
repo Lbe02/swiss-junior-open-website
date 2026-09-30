@@ -159,6 +159,27 @@ p {
   display: inline-block;
 }
 
+.nav-links a.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
+  color: var(--text-on-green-muted);
+  text-decoration: none;
+  padding: 7px 12px;
+  border: 1px solid var(--line-on-green);
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  transition: color 0.14s var(--ease-standard), border-color 0.14s var(--ease-standard);
+}
+
+.nav-links a.lang-toggle:hover {
+  color: #fff;
+  border-color: #fff;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
