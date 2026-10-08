@@ -226,7 +226,6 @@ p {
   list-style: none;
   margin: 0;
   padding: 0;
-  overflow-x: auto;
 }
 
 .nav-links a {
@@ -250,7 +249,8 @@ p {
   display: none;
 }
 
-@media (max-width: 860px) {
+/* Hamburger-Menü schon ab 1080px: Wortmarke + Lockup + Livescores brauchen Platz */
+@media (max-width: 1080px) {
   .nav-links {
     position: fixed;
     inset: var(--nav-h) 0 0 0;
