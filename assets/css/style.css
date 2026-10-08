@@ -117,9 +117,26 @@ p {
   color: var(--terracotta);
 }
 
-.brand img {
-  height: 30px;
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 4px;
+}
+
+.brand-lockup img {
+  display: block;
   width: auto;
+}
+
+.brand-lockup .ball { height: 26px; }
+.brand-lockup .wt { height: 22px; }
+
+.brand-lockup i {
+  display: block;
+  width: 1px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.6);
 }
 
 .nav-left {
@@ -135,11 +152,14 @@ p {
   }
   .brand {
     font-size: 0.78rem;
-    gap: 6px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
-  .brand img {
-    height: 22px;
-  }
+  .brand-lockup { margin-left: 0; gap: 6px; }
+  .brand-lockup .ball { height: 16px; }
+  .brand-lockup .wt,
+  .brand-lockup i { height: 14px; }
   .livescore-btn {
     padding: 6px 10px;
     font-size: 0.66rem;
