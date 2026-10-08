@@ -129,7 +129,7 @@ p {
   width: auto;
 }
 
-.brand-lockup .ball { height: 26px; }
+.brand-lockup .ball { height: 22px; }
 .brand-lockup .wt { height: 22px; }
 
 .brand-lockup i {
@@ -157,7 +157,7 @@ p {
     gap: 4px;
   }
   .brand-lockup { margin-left: 0; gap: 6px; }
-  .brand-lockup .ball { height: 16px; }
+  .brand-lockup .ball,
   .brand-lockup .wt,
   .brand-lockup i { height: 14px; }
   .livescore-btn {
